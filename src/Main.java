@@ -10,6 +10,7 @@ public class Main {
 
         cc.depositar(100);
         cc.transferir(100, poupanca);
+        cc.chequeEspecial(cc.limite);
 
         cc.imprimirExtrato();
         poupanca.imprimirExtrato();

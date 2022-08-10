@@ -9,6 +9,8 @@
     protected double saldo;
     protected Cliente cliente;
 
+    protected double limite;
+
     public Conta(Cliente cliente) {
         this.agencia = Conta.AGENCIA_PADRAO;
         this.numero = SEQUENCIAL++;
@@ -31,7 +33,12 @@
         contaDestino.depositar(valor);
     }
 
-    public int getAgencia() {
+     @Override
+     public void chequeEspecial(double valor) {
+         this.limite += 500;
+     }
+
+     public int getAgencia() {
         return agencia;
     }
 
@@ -43,11 +50,20 @@
         return saldo;
     }
 
+    public double getLimite() {return limite; }
+
     protected void imprimirInfosComuns() {
         System.out.println(String.format("Titular: %s", this.cliente.getNome()));
         System.out.println(String.format("Agencia: %d", this.agencia));
         System.out.println(String.format("Numero: %d", this.numero));
         System.out.println(String.format("Saldo: %.2f", this.saldo));
+    }
+
+    protected void limitesDeCredito() {
+        System.out.println(String.format("LIMITES DE CRÉDITO:"));
+        System.out.println(String.format("Cheque Especial: %.2f", this.limite));
+        System.out.println(String.format("Limite Utilizado:  0,00"));
+        System.out.println(String.format("Limite a Utilizar: %.2f", this.limite));
     }
 }
 
